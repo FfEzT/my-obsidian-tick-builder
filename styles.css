@@ -94,3 +94,130 @@
     font-size: 14px;
     text-align: center;
 }
+
+/* Стили для выбора дней месяца */
+.days-of-month-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    justify-content: center;
+}
+
+.day-of-month {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    margin: auto;
+}
+
+.day-of-month input[type="checkbox"] {
+    display: none;
+}
+
+.day-of-month-label {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--background-modifier-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--background-primary);
+    transition: all 0.15s ease;
+    user-select: none;
+}
+
+.day-of-month input[type="checkbox"]:checked + .day-of-month-label {
+    background-color: var(--interactive-accent);
+    border-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.day-of-month-label:hover {
+    border-color: var(--interactive-accent);
+    transform: scale(1.05);
+}
+
+.day-of-month-name {
+    font-size: 9px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 2px;
+    display: none; /* Скрываем названия дней для чисел месяца */
+}
+
+/* Стиль для заметок-примечаний */
+.note-text {
+    font-size: 0.9em;
+    color: var(--text-muted);
+    margin-top: 10px;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Контейнер для выбора периодичности */
+.periodic-selection-container {
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    background: var(--background-secondary);
+}
+
+.periodic-selection-container p {
+    margin: 0 0 12px 0;
+    font-weight: 600;
+    color: var(--text-normal);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Группировка для чисел месяца (каждые 7 чисел - новая строка) */
+.day-of-month:nth-child(7n)::after {
+    content: '';
+    width: 100%;
+    height: 0;
+    display: none; /* Убираем автоматические разрывы, используем flex-wrap */
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .days-of-week-container,
+    .days-of-month-container {
+        gap: 6px;
+    }
+
+    .day-circle-label,
+    .day-of-month-label {
+        width: 28px;
+        height: 28px;
+        font-size: 10px;
+    }
+
+    .periodic-selection-container {
+        padding: 12px;
+    }
+}
+
+/* Анимация для переключения между типами периодичности */
+.periodic-selection-container {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
